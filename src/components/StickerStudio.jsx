@@ -154,14 +154,14 @@ export default function StickerStudio({ photo, onBack }) {
     const next = [...prev]; [next[i], next[i - 1]] = [next[i - 1], next[i]]; return next;
   });
 
-  // deselect transformer, then export the clean square
-  const renderSquare = (mime = 'image/png', q = 0.95) =>
-    new Promise((res) => {
-      setSelected(null);
-      requestAnimationFrame(() => {
-        res(stageRef.current.toDataURL({ pixelRatio: 1080 / size, mimeType: mime, quality: q }));
-      });
-    });
+  // Export the clean square. Detach the transformer synchronously so the resize
+  // handles aren't baked in — Konva's toDataURL redraws the layers, so there's no
+  // need to wait a frame (rAF is paused when the tab is hidden, which would hang).
+  const renderSquare = (mime = 'image/png', q = 0.95) => {
+    if (trRef.current) trRef.current.nodes([]);
+    setSelected(null);
+    return stageRef.current.toDataURL({ pixelRatio: 1080 / size, mimeType: mime, quality: q });
+  };
 
   const shipSquare = async () => {
     setBusy('square');

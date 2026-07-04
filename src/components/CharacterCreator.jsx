@@ -13,13 +13,13 @@ export default function CharacterCreator({ onAdd, onClose }) {
   const url = buildBunny(opts);
   const set = (k, v) => setOpts((o) => ({ ...o, [k]: v }));
 
-  const Swatches = ({ label, k, list, colorOf = (x) => x, valueOf = (x) => x }) => (
+  const Swatches = ({ label, k, list, getColor = (x) => x, getVal = (x) => x }) => (
     <div className="cc-row">
       <span className="cc-label">{label}</span>
       <div className="cc-swatches">
         {list.map((item) => {
-          const v = valueOf(item);
-          const c = colorOf(item);
+          const v = getVal(item);
+          const c = getColor(item);
           const active = opts[k] === v;
           return (
             <button
@@ -53,7 +53,7 @@ export default function CharacterCreator({ onAdd, onClose }) {
 
         <div className="cc-controls">
           <Swatches label="Body" k="body" list={OPTIONS.body}
-            colorOf={(b) => b.c} valueOf={(b) => b.id} />
+            getColor={(b) => b.c} getVal={(b) => b.id} />
           <Swatches label="Eyes" k="eyes" list={OPTIONS.eyes} />
           <Swatches label="Cheeks" k="cheek" list={OPTIONS.cheek} />
           <Swatches label="Aura" k="aura" list={OPTIONS.aura} />
