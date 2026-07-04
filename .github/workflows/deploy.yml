@@ -39,5 +39,11 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      # First attempt — the Pages API occasionally returns a transient
+      # "Deployment failed, try again later." right after a build.
       - id: deployment
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+      # Retry once if the transient hit, so `git push` deploys are one-shot.
+      - if: steps.deployment.outcome == 'failure'
         uses: actions/deploy-pages@v4
