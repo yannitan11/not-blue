@@ -61,7 +61,20 @@ npm run build          # set `base` in vite.config.js if serving from /<repo>/
 # then publish dist/ — e.g. the gh-pages branch, or a Pages Action
 ```
 
+## Features
+
+- **Camera** — PRINT / PIXEL modes, Color Drop palettes (blue/pink/green/lilac),
+  4 presets, intensity slider, upload + demo fallbacks.
+- **Sticker Studio** — 18 original stickers, drag/resize/rotate/layer/delete,
+  Sticker Bomb.
+- **Wordmark generator** — type a word → 5 cover-style "logo" fonts.
+- **Character Creator ("Make a Bunny")** — parametric chibi avatar (body/eyes/
+  cheeks/aura/accessory/pose), randomize, save "bias", drop onto the cover.
+- **Exports** — Square PNG (1080²), 9:16 Story, 2×3 EP grid (remembers 6 covers).
+- **Sound design** — synthesized shutter / peel / chime / boot, mute toggle.
+- **Retro boot screen** on open.
+
 ## What's next (from the brief, not yet built)
 
-PIXEL (8-bit) mode · Wordmark generator · Character creator ("Make a Bunny") ·
-EP grid + story export · sounds / boot screen.
+Pixel star confetti · sticker packs / unlockables · group-poster mode ·
+print templates (phone case / poster).
